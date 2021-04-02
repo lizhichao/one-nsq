@@ -1,4 +1,10 @@
 nsq https://nsq.io/ client
+
+
+- install
+
+> composer require lizhichao/one-nsq
+
 ```php
 $ct = new \OneNsq\Client('tcp://127.0.0.1:4150');
 
