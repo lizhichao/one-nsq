@@ -13,6 +13,10 @@ $ct = new \OneNsq\Client('tcp://127.0.0.1:4150');
 $res = $ct->subscribe('test', 's2');
 foreach ($res as $data) 
 {
+    if ($data === null) {
+        echo 'null' . PHP_EOL;
+        continue;
+    }
     echo 'attempts:' . $data->attempts . PHP_EOL; 
     echo 'msg:' . $data->msg . PHP_EOL;
     echo 'time:' . date('Y-m-d H:i:s', $data->timestamp) . PHP_EOL;

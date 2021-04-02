@@ -170,6 +170,7 @@ class Client
                 $ret = $this->read->valFixed();
                 if ($ret === Protocol::HEARTBEAT) {
                     $this->heartBeat();
+                    yield null;
                     continue;
                 } else if ($ret instanceof Data) {
                     yield $ret;
@@ -182,6 +183,8 @@ class Client
                     $this->req($ret->id, $msg_timeout * $ret->attempts);
                 } else if ($e->getCode() !== Exception::CODE_READ_FAIL) {
                     throw $e;
+                } else {
+                    yield null;
                 }
             }
         }
