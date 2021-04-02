@@ -102,6 +102,29 @@ class Client
         return true;
     }
 
+    /**
+     * @return bool
+     * @throws Exception
+     */
+    public function close()
+    {
+        $this->write->send(Protocol::COMMAND_CLS . "\n");
+        $ret = $this->read->valFixed();
+        return $ret === 'CLOSE_WAIT';
+    }
+
+    /**
+     * @param string $secret
+     * @return string
+     * @throws Exception
+     */
+    public function auth($secret)
+    {
+        $this->write->send(Protocol::COMMAND_AUTH . "\n" . Protocol::string($secret));
+        $ret = $this->read->valFixed();
+        return $ret;
+    }
+
     private function rdy($n)
     {
         $this->write->send(Protocol::COMMAND_RDY . ' ' . $n . "\n");
