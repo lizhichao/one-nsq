@@ -150,7 +150,13 @@ class Client
         $this->write->send(Protocol::COMMAND_TOUCH . ' ' . $id . "\n");
     }
 
-    public function subscribe($topic, $channel, $fn)
+    /**
+     * @param string $topic
+     * @param string $channel
+     * @return Data[]
+     * @throws Exception
+     */
+    public function subscribe($topic, $channel)
     {
         $this->write->send(Protocol::COMMAND_SUB . ' ' . $topic . ' ' . $channel . "\n");
         $ret = $this->read->valFixed();
@@ -166,7 +172,7 @@ class Client
                     $this->heartBeat();
                     continue;
                 } else if ($ret instanceof Data) {
-                    $fn($ret);
+                    yield $ret;
                 } else {
                     throw new Exception(' sub err msg :' . $ret, Exception::CODE_SUB_ERR);
                 }
