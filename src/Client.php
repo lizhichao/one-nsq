@@ -68,7 +68,7 @@ class Client
      * @return bool
      * @throws Exception
      */
-    public function pub($topic, $msg, $defer = 0)
+    public function publish($topic, $msg, $defer = 0)
     {
         if ($defer === 0) {
             $this->write->send(Protocol::COMMAND_PUB . ' ' . $topic . "\n" .
@@ -88,7 +88,7 @@ class Client
      * @param string $topic
      * @param array $msgs
      */
-    public function pubMany($topic, $msgs)
+    public function publishMany($topic, $msgs)
     {
         $str = '';
         foreach ($msgs as $v) {
@@ -127,7 +127,7 @@ class Client
         $this->write->send(Protocol::COMMAND_TOUCH . ' ' . $id . "\n");
     }
 
-    public function sub($topic, $channel, $fn)
+    public function subscribe($topic, $channel, $fn)
     {
         $this->write->send(Protocol::COMMAND_SUB . ' ' . $topic . ' ' . $channel . "\n");
         $ret = $this->read->valFixed();
