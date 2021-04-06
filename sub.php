@@ -5,6 +5,7 @@ $ret = $ct->subscribe('test', 's1');
 foreach ($ret as $data) {
     if ($data === null) {
         echo 'null' . PHP_EOL;
+        echo "\n --------------- \n";
         continue;
     }
     echo 'attempts:' . $data->attempts . PHP_EOL;

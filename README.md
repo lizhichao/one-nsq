@@ -1,39 +1,40 @@
 nsq https://nsq.io/ client
 
 
-- install
+##  install
 
-> composer require lizhichao/one-nsq
+```shell
+composer require lizhichao/one-nsq
+
+```
+
+## example
 
 ```php
 $ct = new \OneNsq\Client('tcp://127.0.0.1:4150');
 
-# subscribe 
+//$ct->auth('12345');
+
+// subscribe 
 
 $res = $ct->subscribe('test', 's2');
 foreach ($res as $data) 
 {
     if ($data === null) {
         echo 'null' . PHP_EOL;
+        echo "\n --------------- \n";
         continue;
     }
     echo 'attempts:' . $data->attempts . PHP_EOL; 
     echo 'msg:' . $data->msg . PHP_EOL;
     echo 'time:' . date('Y-m-d H:i:s', $data->timestamp) . PHP_EOL;
     echo "\n --------------- \n";
-//    sleep(20);
 //    $ct->touch($data->id);
-//    sleep(20);
-
-//
-//    if (strpos($data->msg, '错误消息') !== false && $data->attempts === 1) {
-//        throw new \Exception('出错了');
-//    }
 
 };
 
 
-# publish 
+// publish 
 for ($i = 0; $i < 6; $i++) {
     $ct->publish('test', 'msg:' . $i . ' time:' . date('Y-m-d H:i:s'));
 }
@@ -50,8 +51,5 @@ for ($i = 0; $i < 6; $i++) {
     $ct->publish('test', 'd-msg:' . $i . ' time:' . date('Y-m-d H:i:s'), ($i + 1) * 1000);
 }
 
-for ($i = 0; $i < 3; $i++) {
-    $ct->publish('test', '错误消息 e-msg:' . $i . ' time:' . date('Y-m-d H:i:s'), ($i + 1) * 1000);
-}
 
 ```
