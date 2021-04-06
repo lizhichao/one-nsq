@@ -8,13 +8,13 @@ $ct = new \OneNsq\Client('tcp://192.168.23.129:4150');
 $i = 0;
 while (true) {
     $i++;
-    $ct->publish('ddtest1', '普通消息 msg:' . $i . ' time:' . date('Y-m-d H:i:s'));
+    $ct->publish('test1', 'test-1:' . $i . ' time:' . date('Y-m-d H:i:s'));
     echo $i.PHP_EOL;
     sleep(mt_rand(0, 5));
 }
-
+//
 //for ($i = 0; $i < 10000; $i++) {
-//    $ct->publish('test', '普通消息 msg:' . $i . ' time:' . date('Y-m-d H:i:s'));
+//    $ct->publish('test2', ' test-2 :' . $i . ' time:' . date('Y-m-d H:i:s'));
 //}
 
 //for ($i = 0; $i < 3; $i++) {

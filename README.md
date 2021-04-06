@@ -18,8 +18,15 @@ $ct = new \OneNsq\Client('tcp://127.0.0.1:4150');
 // subscribe 
 
 $res = $ct->subscribe('test', 's2');
+
+// $ct2 = new \OneNsq\Client('tcp://192.168.23.129:4150');
+// $res2 = $ct2->subscribe('test2', 's1');
+
 foreach ($res as $data) 
 {
+//    $data = $res2->current();
+//    $res2->next();
+
     if ($data === null) {
         echo 'null' . PHP_EOL;
         echo "\n --------------- \n";
