@@ -1,15 +1,20 @@
 <?php
 
 require __DIR__ . '/vendor/autoload.php';
-$ct = new \OneNsq\Client('tcp://192.168.23.129:4150');
+$conf = [
+    'msg_timeout'        => 6000,
+    'heartbeat_interval' => 1600
+];
+
+$ct = new \OneNsq\Client('tcp://192.168.23.129:4150', $conf);
 
 //$ct->auth('12345');
 
 $i = 0;
 while (true) {
     $i++;
-    $ct->publish('test1', 'test-1:' . $i . ' time:' . date('Y-m-d H:i:s'));
-    echo $i.PHP_EOL;
+    $r = $ct->publish('test1', 'test-1:' . $i . ' time:' . date('Y-m-d H:i:s'));
+    echo $i . ($r ? ' true' : ' false') . PHP_EOL;
     sleep(mt_rand(0, 5));
 }
 //

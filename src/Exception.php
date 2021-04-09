@@ -10,4 +10,6 @@ class Exception extends \Exception
     const CODE_MSG_ERR       = 100004;
     const CODE_SUB_ERR       = 100005;
     const CODE_CODE_ERR      = 100006;
+    const CODE_TIMEOUT       = 100007;
+
 }
