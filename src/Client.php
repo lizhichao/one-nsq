@@ -216,9 +216,8 @@ class Client
                 $this->fin($ret->id);
             } catch (\Exception $e) {
                 if ($this->isTimeOut()) {
-                    throw new Exception(' time out ', Exception::CODE_TIMEOUT);
-                }
-                if ($ret instanceof Data) {
+                    throw $e;
+                }else if ($ret instanceof Data) {
                     $this->req($ret->id, $msg_timeout * $ret->attempts);
                 } else if ($e->getCode() !== Exception::CODE_READ_FAIL) {
                     throw $e;
