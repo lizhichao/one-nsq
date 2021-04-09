@@ -201,6 +201,9 @@ class Client
                 if ($ret === Protocol::HEARTBEAT) {
                     $this->heartBeat();
                     yield null;
+                    if ($this->isTimeOut()) {
+                        throw new Exception(' time out ', Exception::CODE_TIMEOUT);
+                    }
                     continue;
                 } else if ($ret instanceof Data) {
                     yield $ret;

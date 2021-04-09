@@ -10,17 +10,17 @@ $ct = new \OneNsq\Client('tcp://192.168.23.129:4150', $conf);
 
 //$ct->auth('12345');
 
-$i = 0;
-while (true) {
-    $i++;
-    $r = $ct->publish('test1', 'test-1:' . $i . ' time:' . date('Y-m-d H:i:s'));
-    echo $i . ($r ? ' true' : ' false') . PHP_EOL;
-    sleep(mt_rand(0, 5));
-}
-//
-//for ($i = 0; $i < 10000; $i++) {
-//    $ct->publish('test2', ' test-2 :' . $i . ' time:' . date('Y-m-d H:i:s'));
+//$i = 0;
+//while (true) {
+//    $i++;
+//    $r = $ct->publish('test1', 'test-1:' . $i . ' time:' . date('Y-m-d H:i:s'));
+//    echo $i . ($r ? ' true' : ' false') . PHP_EOL;
+//    sleep(mt_rand(0, 5));
 //}
+//
+for ($i = 0; $i < 10; $i++) {
+    $ct->publish('test1', ' test-1 :' . $i . ' time:' . date('Y-m-d H:i:s'));
+}
 
 //for ($i = 0; $i < 3; $i++) {
 //    $ct->publishMany('test', [
