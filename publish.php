@@ -18,8 +18,8 @@ $ct = new \OneNsq\Client('tcp://192.168.23.129:4150', $conf);
 //    sleep(mt_rand(0, 5));
 //}
 //
-for ($i = 0; $i < 10; $i++) {
-    $ct->publish('test1', ' test-1 :' . $i . ' time:' . date('Y-m-d H:i:s'));
+for ($i = 0; $i < 10000; $i++) {
+    $ct->publish('test1', ' test-1 :' . $i );
 }
 
 //for ($i = 0; $i < 3; $i++) {
