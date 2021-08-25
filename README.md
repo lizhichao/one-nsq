@@ -64,7 +64,7 @@ for ($i = 0; $i < 6; $i++) {
 ## 我的其他仓库
 
 * [一个极简高性能php框架，支持[swoole | php-fpm ]环境](https://github.com/lizhichao/one)
-* [国密sm3 sm4库](https://github.com/lizhichao/one-sm)
+* [国密sm3 sm4库](https://github.com/lizhichao/sm)
 * [中文分词](https://github.com/lizhichao/VicWord)
 * [clickhouse tcp客户端](https://github.com/lizhichao/one-ck)
 ```shell
